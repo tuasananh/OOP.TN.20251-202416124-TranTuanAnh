@@ -1,0 +1,21 @@
+.settings
+bin
+.classpath
+.project
+Tại sao những đường dẫn trên nên được thêm vào .gitignore (nếu không thêm 
+thì sao)? 
+- Các đường dẫn trên nên được thêm vào .gitignore vì chúng không phải mã nguồn,
+mà là settings của IDE hoặc preference của mỗi người. Để flexible hơn (cho dùng
+nhiều IDE khác nhau), thì ta nên thêm chúng vào .gitignore
+- Nếu không thêm thì các settings này sẽ nằm trên repo và khiến người khác khi 
+pull về phải sử dụng các settings này. Trừ khi team code cùng 1 IDE và cùng style
+thì ta nên thêm chúng vào .gitignore
+
+Nếu sử dụng những công cụ khác để lập trình Java (như IntelliJ IDEA hoặc VSCode), 
+những đường dẫn nào sẽ được thêm vào .gitignore?
+- Với IDEA thì có thể là .idea 
+- Với VSCode thì có thể là .vscode
+
+Trong trường hợp bạn đã lỡ commit các file tạm lên Git, nhưng sau đó bạn đã thêm
+chúng vào .gitignore và muốn Git ngừng theo dõi chúng mà không xóa khỏi máy, bạn
+sẽ cần thực hiện những thao tác nào?
