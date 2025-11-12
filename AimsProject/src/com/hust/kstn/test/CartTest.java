@@ -37,34 +37,39 @@ public class CartTest {
         new DigitalVideoDisc("Get Out", "Horror", "Jordan Peele", 104, 15.75),
         new DigitalVideoDisc("The Grand Budapest Hotel", "Comedy", "Wes Anderson", 100, 13.00)
     };
+    // Should be run with assertions enabled (-ea flag)
     public static void main(String[] args) {
         Cart cart = new Cart();
 
+        System.out.println("Removing DVD from empty cart:");
         cart.removeDVD(availableDVDs[0]);
         cart.print();
-        // Adding DVDs to the cart
+
+        System.out.println("Adding DVDs to cart:");
         for (int i = 0; i < 14; i++) {
-            cart.addDVD(availableDVDs[i]);
+            assert cart.addDVD(availableDVDs[i]) == 1;
         }
-
-        System.out.println("Cart is initialized with 20 DVDs, try adding...");
-        cart.addDVD(availableDVDs[0]); // singular
         cart.print();
 
-        cart.addDVD(availableDVDs[0], availableDVDs[1]); // try adding 2 DVDs
+        System.out.println("Add single DVD to cart:");
+        assert cart.addDVD(availableDVDs[0]) == 1; // singular
         cart.print();
 
-        cart.addDVD(availableDVDs[0], availableDVDs[1], availableDVDs[2]); // multiple
+        System.out.println("Add two DVDs to cart:");
+        assert cart.addDVD(availableDVDs[0], availableDVDs[1]) == 2; // try adding 2 DVDs
         cart.print();
 
-        // Should fail
-        cart.addDVD(availableDVDs[3]);
-
-        cart.removeDVD(availableDVDs[0]);
+        System.out.println("Add multiple DVDs to cart:");
+        assert cart.addDVD(availableDVDs[0], availableDVDs[1], availableDVDs[2]) == 3; // multiple
         cart.print();
 
-        // silently fail
-        cart.removeDVD(availableDVDs[3]);
+        assert cart.removeDVD(availableDVDs[0]) == 4; // remove all copies of availableDVDs[0]
+        cart.print();
+
+        assert cart.removeDVD(availableDVDs[3]) == 1;
+        cart.print();
+
+        assert cart.removeDVD(availableDVDs[3]) == 0; // should be nothing
         cart.print();
     } 
 
