@@ -1,7 +1,7 @@
-package com.hust.kstn;
+package com.hust.kstn.models;
 
 public class DigitalVideoDisc {
-	private String title;
+	private final String title;
 	private String category;
 	private String director;
 	private int length;

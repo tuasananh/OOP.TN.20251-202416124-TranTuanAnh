@@ -1,0 +1,6 @@
+Chuyện gì xảy ra khi thêm phương thức này, tại sao?
+- Trình dịch báo lỗi: cannot declare both addDVD(DigitalVideoDisc...) and addDVD(DigitalVideoDisc[]) in Cart
+- Lý do: DigitalVideoDisc... cùng kiểu với DigitalVideoDisc[] => hàm có cùng chữ ký
+
+Bạn lựa chọn phương án nào để giải quyết?  
+- Xóa phương thức addDVD(DigitalVideoDisc[] discs)

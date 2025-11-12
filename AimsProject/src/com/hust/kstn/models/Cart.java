@@ -1,21 +1,61 @@
-package com.hust.kstn;
+package com.hust.kstn.models;
 
 public class Cart {
 	private static final int MAX_NUMBER_ORDERED = 20;
 
-	private DigitalVideoDisc[] itemsInCart = new DigitalVideoDisc[MAX_NUMBER_ORDERED];
+	private final DigitalVideoDisc[] itemsInCart = new DigitalVideoDisc[MAX_NUMBER_ORDERED];
 
 	private int qtyOrdered;
 
 	public void addDVD(DigitalVideoDisc disc) {
-		if (qtyOrdered == MAX_NUMBER_ORDERED) {
-			System.out.println("The cart is almost full");
+		if (qtyOrdered + 1 > MAX_NUMBER_ORDERED) {
+			System.out.println("The cart is already full");
 			return;
 		}
 		itemsInCart[qtyOrdered] = disc;
 		qtyOrdered++;
 		System.out.println("The disc has been added successfully");
 	}
+
+    public void addDVD(DigitalVideoDisc disc1, DigitalVideoDisc disc2) {
+        if (qtyOrdered + 2 > MAX_NUMBER_ORDERED) {
+            System.out.println("Not enough space for two more discs");
+            return;
+        }
+        itemsInCart[qtyOrdered] = disc1;
+        qtyOrdered++;
+        itemsInCart[qtyOrdered] = disc2;
+        qtyOrdered++;
+        System.out.println("Two discs have been added successfully");
+    }
+
+    public void addDVD(DigitalVideoDisc... discs) {
+        if (discs == null) {
+            // do nothing with null
+            return;
+        }
+        if (discs.length == 0) {
+            // no discs to add 
+            return;
+        }
+        if (discs.length == 1) {
+            // fallback to singular function
+            addDVD(discs[0]); 
+            return;
+        }
+
+        if (qtyOrdered + discs.length > MAX_NUMBER_ORDERED) {
+            System.out.println("Not enough space for all discs");
+            return;
+        }
+
+        for (DigitalVideoDisc disc : discs) {
+            itemsInCart[qtyOrdered] = disc;
+            qtyOrdered++;
+        }
+
+        System.out.println("All discs have been added successfully");
+    }
 
 	public void removeDVD(DigitalVideoDisc disc) {
 		if (qtyOrdered == 0) {
