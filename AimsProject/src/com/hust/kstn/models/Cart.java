@@ -1,21 +1,22 @@
 package com.hust.kstn.models;
 
 public class Cart {
-	private static final int MAX_NUMBER_ORDERED = 20;
 
-	private final DigitalVideoDisc[] itemsInCart = new DigitalVideoDisc[MAX_NUMBER_ORDERED];
+    private static final int MAX_NUMBER_ORDERED = 20;
 
-	private int qtyOrdered;
+    private final DigitalVideoDisc[] itemsInCart = new DigitalVideoDisc[MAX_NUMBER_ORDERED];
 
-	public void addDVD(DigitalVideoDisc disc) {
-		if (qtyOrdered + 1 > MAX_NUMBER_ORDERED) {
-			System.out.println("The cart is already full");
-			return;
-		}
-		itemsInCart[qtyOrdered] = disc;
-		qtyOrdered++;
-		System.out.println("The disc has been added successfully");
-	}
+    private int qtyOrdered;
+
+    public void addDVD(DigitalVideoDisc disc) {
+        if (qtyOrdered + 1 > MAX_NUMBER_ORDERED) {
+            System.out.println("The cart is already full");
+            return;
+        }
+        itemsInCart[qtyOrdered] = disc;
+        qtyOrdered++;
+        System.out.println("The disc has been added successfully");
+    }
 
     public void addDVD(DigitalVideoDisc disc1, DigitalVideoDisc disc2) {
         if (qtyOrdered + 2 > MAX_NUMBER_ORDERED) {
@@ -40,7 +41,7 @@ public class Cart {
         }
         if (discs.length == 1) {
             // fallback to singular function
-            addDVD(discs[0]); 
+            addDVD(discs[0]);
             return;
         }
 
@@ -57,46 +58,54 @@ public class Cart {
         System.out.println("All discs have been added successfully");
     }
 
-	public void removeDVD(DigitalVideoDisc disc) {
-		if (qtyOrdered == 0) {
-			System.out.println("The cart is empty");
-			return;
-		}
-		for (int i = 0; i < qtyOrdered; i++) {
-			// This check only checks the address of the variable
-			// Since the problem statement does not mention when
-			// two discs are considered equal, I figure we can just
-			// do it the bare minimum effort way.
-			if (disc == itemsInCart[i]) {
-				for (int j = i; j + 1 < qtyOrdered; j++) {
-					itemsInCart[j] = itemsInCart[j + 1];
-				}
-				qtyOrdered--;
-				break;
-			}
-		}
-		// There may be a case where the disc is not found,
-		// but in that case qtyOrdered does not change. And in
-		// fact, after this call, the given `disc` will have been
-		// removed anyway. So this message might make sense?
-		System.out.println("The disc has been removed successfully");
-	}
+    public void removeDVD(DigitalVideoDisc disc) {
+        if (qtyOrdered == 0) {
+            System.out.println("The cart is empty");
+            return;
+        }
+        for (int i = 0; i < qtyOrdered; i++) {
+            // This check only checks the address of the variable
+            // Since the problem statement does not mention when
+            // two discs are considered equal, I figure we can just
+            // do it the bare minimum effort way.
+            if (disc == itemsInCart[i]) {
+                for (int j = i; j + 1 < qtyOrdered; j++) {
+                    itemsInCart[j] = itemsInCart[j + 1];
+                }
+                qtyOrdered--;
+                break;
+            }
+        }
+        // There may be a case where the disc is not found,
+        // but in that case qtyOrdered does not change. And in
+        // fact, after this call, the given `disc` will have been
+        // removed anyway. So this message might make sense?
+        System.out.println("The disc has been removed successfully");
+    }
 
-	public double calculateTotalCost() {
-		double totalCost = 0.0;
-		for (int i = 0; i < qtyOrdered; i++) {
-			totalCost += itemsInCart[i].getCost();
-		}
-		return totalCost;
-	}
+    public double calculateTotalCost() {
+        double totalCost = 0.0;
+        for (int i = 0; i < qtyOrdered; i++) {
+            totalCost += itemsInCart[i].getCost();
+        }
+        return totalCost;
+    }
 
-	public void print() {
-		System.out.println("=== Total items in cart: " + qtyOrdered + " ===");
-		System.out.println("=== All items in cart ===");
+    public int getQuantityOrdered() {
+        return qtyOrdered;
+    }
 
-		for (int i = 0; i < qtyOrdered; i++) {
-			DigitalVideoDisc item = itemsInCart[i];
-			System.out.println("[ID]: " + item.getId() + ", [Title]: " + item.getTitle() + ", [Cost]: " + item.getCost());
-		}
-	}
+    public void print() {
+        if (qtyOrdered == 0) {
+            System.out.println("The cart is empty");
+            return;
+        }
+        System.out.println("======================= THE CURRENT CART =======================");
+        System.out.println("Total items: " + this.qtyOrdered);
+        for (int i = 0; i < qtyOrdered; i++) {
+            System.out.println("- " + itemsInCart[i]);
+        }
+        System.out.println("Subtotal: " + this.calculateTotalCost() + "$");
+        System.out.println("================================================================"); 
+    }
 }
