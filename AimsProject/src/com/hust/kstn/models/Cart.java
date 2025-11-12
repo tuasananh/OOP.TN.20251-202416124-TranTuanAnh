@@ -96,7 +96,7 @@ public class Cart {
 
 		for (int i = 0; i < qtyOrdered; i++) {
 			DigitalVideoDisc item = itemsInCart[i];
-			System.out.println("[Title]: " + item.getTitle() + ", " + "[Cost]: " + item.getCost());
+			System.out.println("[ID]: " + item.getId() + ", [Title]: " + item.getTitle() + ", [Cost]: " + item.getCost());
 		}
 	}
 }
