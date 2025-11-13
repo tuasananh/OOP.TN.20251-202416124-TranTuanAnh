@@ -1,0 +1,2 @@
+Output length: 11860534
+Time taken to read file: 30 ms
