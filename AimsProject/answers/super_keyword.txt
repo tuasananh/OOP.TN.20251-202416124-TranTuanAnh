@@ -1,0 +1,2 @@
+Từ khóa super trong ví dụ của mã nguồn lớp Book được dùng để gọi
+constructor của lớp cha và gọi phương thức toString() của lớp cha.
