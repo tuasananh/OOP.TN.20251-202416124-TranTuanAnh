@@ -1,0 +1,14 @@
+- Khi chạy phương thức xong phương thức swap, 2 biến s1 và s2 vẫn 
+trỏ về vị trí cũ, do đó Java là ngôn ngữ truyền tham trị
+- Để phương thức swap hoạt động, ta phải swap riêng từng thuộc tính
+của chúng
+    public static void swap(Student s1, Student s2) {
+        int s1Id = s1.getId();
+        String s1Name = s1.getName();
+        s1.setId(s2.getId());
+        s1.setName(s2.getName());
+        s2.setId(s1Id);
+        s2.setName(s1Name);
+    }
+
+- Sơ đồ minh họa đi kèm trong file stack_and_heap_diagram.png 
