@@ -1,6 +1,7 @@
 package com.hust.kstn.models;
 
 public class Media {
+
     private final int id;
     private final String title;
     private final double cost;
@@ -12,6 +13,18 @@ public class Media {
         this.title = title;
         this.cost = cost;
         this.category = category;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public double getCost() {
+        return cost;
+    }
+
+    public String getCategory() {
+        return category;
     }
 
     @Override
